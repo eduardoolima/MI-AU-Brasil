@@ -1,0 +1,302 @@
+﻿@model MIEAUBRASIL.Models.AnimalDoador
+
+
+
+<style>
+    .foto {
+        border-radius: 50px;
+        box-shadow: 1px 1px 3px 5px #000;
+    }
+
+    .card-redondo {
+        /*position: relative;*/
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        /*border: 1px solid rgba(0, 0, 0, 0.125);*/
+        border-radius: 5px 10px;
+    }
+</style>
+
+@{
+    #region converte dropdownList
+
+    switch (int.Parse(Model.Especie))
+    {
+        case 1:
+            Model.Especie = "Cachorro";
+            break;
+        case 2:
+            Model.Especie = "Gato";
+            break;
+        default:
+            Model.Especie = "?";
+            break;
+    }
+
+    switch (int.Parse(Model.Genero))
+    {
+        case 1:
+            Model.Genero = "Macho";
+            break;
+        case 2:
+            Model.Genero = "Fêmea";
+            break;
+        default:
+            Model.Genero = "?";
+            break;
+    }
+
+    switch (int.Parse(Model.Porte))
+    {
+        case 1:
+            Model.Porte = "Pequeno";
+            break;
+        case 2:
+            Model.Porte = "Médio";
+            break;
+        case 3:
+            Model.Porte = "Grande";
+            break;
+        default:
+            Model.Porte = "?";
+            break;
+    }
+    switch (int.Parse(Model.Estado))
+    {
+        case 1:
+            Model.Estado = "Acre";
+            break;
+        case 2:
+            Model.Estado = "Alagoas";
+            break;
+        case 3:
+            Model.Estado = "Amapá";
+            break;
+        case 4:
+            Model.Estado = "Amazonas";
+            break;
+        case 5:
+            Model.Estado = "Bahia";
+            break;
+        case 6:
+            Model.Estado = "Ceará";
+            break;
+        case 7:
+            Model.Estado = "Distrito Federal";
+            break;
+        case 8:
+            Model.Estado = "Espirito Santo";
+            break;
+        case 9:
+            Model.Estado = "Goiás";
+            break;
+        case 10:
+            Model.Estado = "Maranhão";
+            break;
+        case 11:
+            Model.Estado = "Minas Gerais";
+            break;
+        case 12:
+            Model.Estado = "Mato Grosso do Sul";
+            break;
+        case 13:
+            Model.Estado = "Mato Grosso";
+            break;
+        case 14:
+            Model.Estado = "Pará";
+            break;
+        case 15:
+            Model.Estado = "Paraíba";
+            break;
+        case 16:
+            Model.Estado = "Pernambuco";
+            break;
+        case 17:
+            Model.Estado = "Piauí";
+            break;
+        case 18:
+            Model.Estado = "Paraná";
+            break;
+        case 19:
+            Model.Estado = "Rio de Janeiro";
+            break;
+        case 20:
+            Model.Estado = "Rio Grande do Norte";
+            break;
+        case 21:
+            Model.Estado = "Rondônia";
+            break;
+        case 22:
+            Model.Estado = "Roraima";
+            break;
+        case 23:
+            Model.Estado = "Rio Grande do Sul";
+            break;
+        case 24:
+            Model.Estado = "Santa Catarina";
+            break;
+        case 25:
+            Model.Estado = "Sergipe";
+            break;
+        case 26:
+            Model.Estado = "São Paulo";
+            break;
+        case 27:
+            Model.Estado = "Tocantins";
+            break;
+        default:
+            Model.Estado = "?";
+            break;
+    }
+    #endregion
+}
+<h1>Adote!</h1>
+
+<div>
+
+    <p></p>
+    <div class="row">
+        <div class="col-6">
+            <dl class="row">
+
+                <dt class="col-sm-3">
+                    <h5><i class="fa fa-user-o"></i> Doador</h5>
+                </dt>
+                <dd class="col-sm-9">
+                    <b>@Html.DisplayFor(model => model.NomeDoador)</b>
+                </dd>
+                <dt class="col-sm-3">
+                    <h5><i class="fa fa-phone"></i> Telefone</h5>
+                </dt>
+                <dd class="col-sm-9">
+                    <b>@Html.DisplayFor(model => model.Telefone)</b>
+                </dd>
+                <dt class="col-sm-3">
+                    <h5><i class="fa fa-whatsapp"></i> WhatsApp</h5>
+                </dt>
+                <dd class="col-sm-9">
+                    <b>
+                        @Html.DisplayFor(model => model.WhatsApp)
+                        <a href="@Model.UrlWhatsapp" target="_blank"<i class="fa fa-whatsapp"></i></a>
+                    </b>
+                </dd>
+                <dt class="col-sm-3">
+                    <h5><i class="fa fa-at"></i> E-mail</h5>
+                </dt>
+                <dd class="col-sm-9">
+                    <b>@Html.DisplayFor(model => model.Email)</b>
+                </dd>
+                <dt class="col-sm-3">
+                    <h5><i class="fa fa-map-marker"></i>  Estado</h5>
+                </dt>
+                <dd class="col-sm-9">
+                    <b>@Html.DisplayFor(model => model.Estado)</b>
+                </dd>
+                <dt class="col-sm-3">
+                    <h5><i class="fa fa-building"></i> Cidade</h5>
+                </dt>
+                <dd class="col-sm-9">
+                    <b>@Html.DisplayFor(model => model.Cidade)</b>
+                </dd>
+
+                <p><br /></p>            
+                <dt class="col-sm-3">
+                    <i class="fa fa-tag"></i> Nome do Animal
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.NomeAnimal)
+                </dd>
+                <p></p>
+                <dt class="col-sm-3">
+                    <i class="fa fa-paw"></i> Espécie
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Especie)
+                </dd>
+                <p></p>
+                <dt class="col-sm-3">
+                    <i class="fa fa-venus-mars"></i> Gênero
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Genero)
+                </dd>
+                <p></p>
+                <dt class="col-sm-3">
+                    <i class="fa fa-leaf"></i> Deficiência
+                </dt>
+                <dd class="col-sm-9">
+                    @{
+                        @if (Model.Deficiencia == null)
+                        {
+                            <p>Nenhuma</p>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(model => model.Deficiencia)
+                        }
+                    }
+                </dd>
+                <p></p>
+                <dt class="col-sm-3">
+                    <i class="fa fa-eyedropper"></i>  @Html.DisplayNameFor(model => model.Vacinado)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Vacinado)
+                </dd>
+                <dt class="col-sm-3">
+                    <i class="fa fa-plus"></i>  @Html.DisplayNameFor(model => model.Castrado)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Castrado)
+                </dd>
+                <p></p>
+                <dt class="col-sm-3">
+                    <i class="fa fa-comment"></i>   Observação
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Observacao)
+                </dd>
+                <p></p>
+                <dt class="col-sm-3">
+                    <i class="fa fa-calendar"></i> Resgate
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.DataResgate)
+                </dd>
+                <p></p>
+                <dt class="col-sm-3">
+                    <i class="fa fa-birthday-cake"></i>   @Html.DisplayNameFor(model => model.Idade)
+                </dt>
+
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Idade)
+                </dd>
+                <dt class="col-sm-3">
+                    <i class="fa fa-unsorted"></i> @Html.DisplayNameFor(model => model.Porte)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Porte)
+                </dd>
+
+            </dl>
+        </div>
+        <div class="card-redondo col-6">
+            <img src="@Url.Content(Model.PathFoto)" class="foto" height="420" />
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="row">
+    <div class="col-5">
+        <a asp-action="Index" class="btn btn-outline-dark">Voltar</a>
+    </div>
+</div>

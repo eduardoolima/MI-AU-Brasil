@@ -1,0 +1,217 @@
+﻿@model IEnumerable<MIEAUBRASIL.Models.AnimalDoador>
+
+@{
+    ViewData["Title"] = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+    <h1>Adote Um Novo Amigo!</h1>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            @*<div class="row">*@
+            <div class="col-4 pt-5">
+                <div class="card">
+                    <img src="@Url.Content(item.PathFoto)" class="card-img-top" height="350" />
+
+
+                    @{
+                        #region converte dropdownList
+
+                        //switch (int.Parse(item.Especie))
+                        //{
+                        //    case 1:
+                        //        item.Especie = "Cachorro";
+                        //        break;
+                        //    case 2:
+                        //        item.Especie = "Gato";
+                        //        break;
+                        //    default:
+                        //        item.Especie = "?";
+                        //        break;
+                        //}
+
+                        switch (int.Parse(item.Especie))
+                        {
+                            case 1:
+                                item.Especie = "Cachorro";
+                                break;
+                            case 2:
+                                item.Especie = "Gato";
+                                break;
+                            default:
+                                item.Especie = "?";
+                                break;
+                        }
+
+                        switch (int.Parse(item.Genero))
+                        {
+                            case 1:
+                                item.Genero = "Macho";
+                                break;
+                            case 2:
+                                item.Genero = "Fêmea";
+                                break;
+                            default:
+                                item.Genero = "?";
+                                break;
+                        }
+
+                        switch (int.Parse(item.Porte))
+                        {
+                            case 1:
+                                item.Porte = "Pequeno";
+                                break;
+                            case 2:
+                                item.Porte = "Médio";
+                                break;
+                            case 3:
+                                item.Porte = "Grande";
+                                break;
+                            default:
+                                item.Porte = "?";
+                                break;
+                        }
+                        switch (int.Parse(item.Estado))
+                        {
+                            case 1:
+                                item.Estado = "Acre";
+                                break;
+                            case 2:
+                                item.Estado = "Alagoas";
+                                break;
+                            case 3:
+                                item.Estado = "Amapá";
+                                break;
+                            case 4:
+                                item.Estado = "Amazonas";
+                                break;
+                            case 5:
+                                item.Estado = "Bahia";
+                                break;
+                            case 6:
+                                item.Estado = "Ceará";
+                                break;
+                            case 7:
+                                item.Estado = "Distrito Federal";
+                                break;
+                            case 8:
+                                item.Estado = "Espirito Santo";
+                                break;
+                            case 9:
+                                item.Estado = "Goiás";
+                                break;
+                            case 10:
+                                item.Estado = "Maranhão";
+                                break;
+                            case 11:
+                                item.Estado = "Minas Gerais";
+                                break;
+                            case 12:
+                                item.Estado = "Mato Grosso do Sul";
+                                break;
+                            case 13:
+                                item.Estado = "Mato Grosso";
+                                break;
+                            case 14:
+                                item.Estado = "Pará";
+                                break;
+                            case 15:
+                                item.Estado = "Paraíba";
+                                break;
+                            case 16:
+                                item.Estado = "Pernambuco";
+                                break;
+                            case 17:
+                                item.Estado = "Piauí";
+                                break;
+                            case 18:
+                                item.Estado = "Paraná";
+                                break;
+                            case 19:
+                                item.Estado = "Rio de Janeiro";
+                                break;
+                            case 20:
+                                item.Estado = "Rio Grande do Norte";
+                                break;
+                            case 21:
+                                item.Estado = "Rondônia";
+                                break;
+                            case 22:
+                                item.Estado = "Roraima";
+                                break;
+                            case 23:
+                                item.Estado = "Rio Grande do Sul";
+                                break;
+                            case 24:
+                                item.Estado = "Santa Catarina";
+                                break;
+                            case 25:
+                                item.Estado = "Sergipe";
+                                break;
+                            case 26:
+                                item.Estado = "São Paulo";
+                                break;
+                            case 27:
+                                item.Estado = "Tocantins";
+                                break;
+                            default:
+                                item.Estado = "?";
+                                break;
+                        }
+                        #endregion
+                    }
+                    <div class="card-body">
+                        <div class="card-title">
+                            <div class="row">
+                                <div class="col-9 align-content-start">
+                                    @{
+                                        if (item.Genero != "Fêmea")
+                                        {
+                                            <h5>@item.NomeAnimal - <i class="fa fa-mars"></i>@item.Genero</h5>
+                                        }
+                                        else 
+                                        {
+                                            <h5>@item.NomeAnimal - <i class="fa fa-venus"></i>@item.Genero</h5>
+                                        }
+                                        }
+
+                                </div>
+
+                                <div class="col-3 badge badge-pill badge-secondary">
+                                    <text class="align-middle">@item.Especie</text>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="card-text col-md-7">
+                                <h6>Porte: @item.Porte</h6>
+                                <h6>Vacinado: @Html.DisplayFor(modelItem => item.Vacinado)</h6>
+                                <h6>Castrado: @Html.DisplayFor(modelItem => item.Castrado)</h6>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="col-1">
+                                    <a asp-action="Adopt" asp-route-id="@item.Id" class="btn btn-primary">ADOTAR</a>
+                                </div>
+                                <p></p>
+                                <div class="col-1">
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">DETALHES</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+

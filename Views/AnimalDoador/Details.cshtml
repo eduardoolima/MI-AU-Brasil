@@ -1,0 +1,388 @@
+﻿@model MIEAUBRASIL.Models.AnimalDoador
+
+@{
+    ViewData["Title"] = "Detalhes -";
+}
+
+<style>
+    .foto {
+        border-radius: 50px;
+        box-shadow: 1px 1px 3px 5px #000;
+    }
+
+    .card-redondo {
+        /*position: relative;*/
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        /*border: 1px solid rgba(0, 0, 0, 0.125);*/
+        border-radius: 5px 10px;
+    }
+
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 10px;
+        height: 25%;
+        border: 1px solid #888;
+        width: 20%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 38px;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .maozinha:hover {
+        color: blue;
+        cursor: pointer;
+    }
+</style>
+
+@{
+    #region converte dropdownList
+
+    switch (int.Parse(Model.Especie))
+    {
+        case 1:
+            Model.Especie = "Cachorro";
+            break;
+        case 2:
+            Model.Especie = "Gato";
+            break;
+        default:
+            Model.Especie = "?";
+            break;
+    }
+
+    switch (int.Parse(Model.Genero))
+    {
+        case 1:
+            Model.Genero = "Macho";
+            break;
+        case 2:
+            Model.Genero = "Fêmea";
+            break;
+        default:
+            Model.Genero = "?";
+            break;
+    }
+
+    switch (int.Parse(Model.Porte))
+    {
+        case 1:
+            Model.Porte = "Pequeno";
+            break;
+        case 2:
+            Model.Porte = "Médio";
+            break;
+        case 3:
+            Model.Porte = "Grande";
+            break;
+        default:
+            Model.Porte = "?";
+            break;
+    }
+    switch (int.Parse(Model.Estado))
+    {
+        case 1:
+            Model.Estado = "Acre";
+            break;
+        case 2:
+            Model.Estado = "Alagoas";
+            break;
+        case 3:
+            Model.Estado = "Amapá";
+            break;
+        case 4:
+            Model.Estado = "Amazonas";
+            break;
+        case 5:
+            Model.Estado = "Bahia";
+            break;
+        case 6:
+            Model.Estado = "Ceará";
+            break;
+        case 7:
+            Model.Estado = "Distrito Federal";
+            break;
+        case 8:
+            Model.Estado = "Espirito Santo";
+            break;
+        case 9:
+            Model.Estado = "Goiás";
+            break;
+        case 10:
+            Model.Estado = "Maranhão";
+            break;
+        case 11:
+            Model.Estado = "Minas Gerais";
+            break;
+        case 12:
+            Model.Estado = "Mato Grosso do Sul";
+            break;
+        case 13:
+            Model.Estado = "Mato Grosso";
+            break;
+        case 14:
+            Model.Estado = "Pará";
+            break;
+        case 15:
+            Model.Estado = "Paraíba";
+            break;
+        case 16:
+            Model.Estado = "Pernambuco";
+            break;
+        case 17:
+            Model.Estado = "Piauí";
+            break;
+        case 18:
+            Model.Estado = "Paraná";
+            break;
+        case 19:
+            Model.Estado = "Rio de Janeiro";
+            break;
+        case 20:
+            Model.Estado = "Rio Grande do Norte";
+            break;
+        case 21:
+            Model.Estado = "Rondônia";
+            break;
+        case 22:
+            Model.Estado = "Roraima";
+            break;
+        case 23:
+            Model.Estado = "Rio Grande do Sul";
+            break;
+        case 24:
+            Model.Estado = "Santa Catarina";
+            break;
+        case 25:
+            Model.Estado = "Sergipe";
+            break;
+        case 26:
+            Model.Estado = "São Paulo";
+            break;
+        case 27:
+            Model.Estado = "Tocantins";
+            break;
+        default:
+            Model.Estado = "?";
+            break;
+    }
+    #endregion
+}
+<h1>Detalhes</h1>
+
+<div>
+    <h4> @Html.DisplayFor(model => model.NomeAnimal)</h4>
+    <p></p>
+    <div class="row">
+        <div class="col-6">
+            <dl class="row">
+                <dt class="col-sm-3">
+                    <i class="fa fa-tag"></i> Nome do Animal
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.NomeAnimal)
+                </dd>
+                <dt class="col-sm-3">
+                    <i class="fa fa-paw"></i> Espécie
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Especie)
+                </dd>
+                <dt class="col-sm-3">
+                    <i class="fa fa-venus-mars"></i> Gênero
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Genero)
+                </dd>
+                <dt class="col-sm-3">
+                    <i class="fa fa-leaf"></i> Deficiência
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Deficiencia)
+                </dd>
+                <dt class="col-sm-3">
+                    <i class="fa fa-eyedropper"></i> @Html.DisplayNameFor(model => model.Vacinado)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Vacinado)
+                </dd>
+                <dt class="col-sm-3">
+                    <i class="fa fa-plus"></i> @Html.DisplayNameFor(model => model.Castrado)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Castrado)
+                </dd>
+                <dt class="col-sm-3">
+                    <i class="fa fa-comment"></i> Observação
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Observacao)
+                </dd>
+                <dt class="col-sm-3">
+                    <i class="fa fa-calendar"></i> Data do Resgate do Animal
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.DataResgate)
+                </dd>
+                <dt class="col-sm-3">
+                    <i class="fa fa-birthday-cake"></i> @Html.DisplayNameFor(model => model.Idade)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Idade)
+                </dd>
+
+                <dt class="col-sm-3">
+                    <i class="fa fa-unsorted"></i> @Html.DisplayNameFor(model => model.Porte)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Porte)
+                </dd>
+
+            </dl>
+        </div>
+        <div class="card-redondo col-6">
+            <img src="@Url.Content(Model.PathFoto)" class="foto" height="420" />
+        </div>
+
+    </div>
+
+</div>
+@{
+    if (Model.Genero == "Macho")
+    {
+        <h4>Adote o @Html.DisplayFor(model => model.NomeAnimal)!!</h4>
+    }
+    if (Model.Genero == "Fêmea")
+    {
+        <h4>Adote a @Html.DisplayFor(model => model.NomeAnimal)!!</h4>
+    }
+    if (Model.Genero == "?")
+    {
+        <h4>Adote o @Html.DisplayFor(model => model.NomeAnimal)!!</h4>
+    }
+}
+<div class="row">
+    <div class="col-1">
+        <a asp-action="adopt" asp-route-id="@Model.Id" class="btn btn-primary">ADOTAR</a>
+    </div>
+    <div class="col-5">
+        <a asp-action="Index" class="btn btn-outline-dark">Voltar</a>
+    </div>
+</div>
+<p></p>
+<p>Este Animal é seu? <a class="maozinha" id="modal"><br />Clique Aqui</a> para edita-lo ou exclui-lo da nossa base de dados</p>
+<p></p>
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-4">
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">EDITAR</a>
+            </div>
+            <div class="col-1">
+                <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">EXCLUIR</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section scripts
+{
+    <script>
+
+        //var modal = document.getElementById("myModal");
+
+
+        //// Get the button that opens the modal
+        //var btn = document.getElementById("modal");
+
+        //// Get the <span> element that closes the modal
+        //var span = document.getElementsByClassName("close")[0];
+
+        //// When the user clicks the button, open the modal
+        //btn.onclick = function () {
+        //    modal.style.display = "block";
+        //}
+
+        //// When the user clicks on <span> (x), close the modal
+        //span.onclick = function () {
+        //    modal.style.display = "none";
+        //}
+
+        //// When the user clicks anywhere outside of the modal, close it
+        //window.onclick = function (event) {
+        //    if (event.target == modal) {
+        //        modal.style.display = "none";
+        //    }
+        //}
+
+
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        /*   var modal = document.getElementById("modal");*/
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("modal");
+        /*    var btn = document.getElementById("btnConfirmar");*/
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+}

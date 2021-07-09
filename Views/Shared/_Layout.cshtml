@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]  MI&AU BRASIL</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-cerulean.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="SHORTCUT ICON" href="~/img/Icone1.png" />
+    <script src="https://use.fontawesome.com/b512fad548.js"></script>
+</head>
+
+<style>
+    .header {
+        position: fixed;
+        top: 0;
+    }
+
+    body {
+        padding-top: 80px; /* Altura do menu */
+    }
+
+    .maozinha1 {
+        color: grey;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <header>
+        <div class="header col-12">
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-expand-lg navbar-dark bg-primary border-bottom box-shadow mb-3">
+                <div class="container">
+                    <div>
+                        <a class="navbar-brand" asp-area="" asp-controller="AnimalDoador" asp-action="Index"> <img src="~/img/logo8.png" /></a>
+                    </div>
+                    @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MI&AU BRASIL</a>*@
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <div class="collapse navbar-collapse" id="navbarColor01">
+                            <ul class="navbar-nav me-auto">
+                                <li class="nav-item">
+                                    <b><a class="nav-link" asp-area="" asp-controller="AnimalDoador" asp-action="Index">Início</a></b>
+                                </li>
+                                <li class="nav-item">
+                                    <b><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacidade</a></b>
+                                </li>
+                                <li class="nav-item active">
+                                    <b><a class="nav-link" asp-area="" asp-controller="AnimalDoador" asp-action="Create">Cadastar Animal</a></b>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-2">
+                &copy; 2021 - MI&AU Brasil 
+            </div>
+            <div class="col-2">
+                <a class="maozinha1" asp-area="" asp-controller="Home" asp-action="Contact">Contato dos Desenvolvedores</a>
+            </div>
+        </div>
+        
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

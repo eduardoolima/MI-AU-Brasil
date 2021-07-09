@@ -1,0 +1,291 @@
+﻿@model MIEAUBRASIL.Models.AnimalDoador
+
+@{
+    ViewData["Title"] = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    .titulo-modal-Edit {
+        color: #88c149;
+    }
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        height: 50%;
+        border: 1px solid #888;
+        width: 50%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 38px;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+</style>
+
+<h1>Editar <i class="fa fa-edit"></i></h1>
+
+@{
+    if (Model.Genero != "2")
+    {
+        <h4>Informações do @Html.DisplayFor(model => model.NomeAnimal) <i class="fa fa-paw"></i></h4>
+    }
+    if (Model.Genero == "2")
+    {
+        <h4>Informações da @Html.DisplayFor(model => model.NomeAnimal) <i class="fa fa-paw"></i></h4>
+    }
+}
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Codigo" />
+            <input type="hidden" asp-for="PathFoto" />
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="NomeAnimal" class="control-label"></label>
+                    <input asp-for="NomeAnimal" class="form-control" />
+                    <span asp-validation-for="NomeAnimal" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Especie" class="control-label">Gênero</label>
+                    <select asp-for="Especie" class="form-control" asp-items="Html.GetEnumSelectList<especie>()"></select>
+                    <span asp-validation-for="Especie" class="text-danger"></span>
+                </div>
+                @*<div class="form-group col-md-6">
+                        <label asp-for="Especie" class="control-label"></label>
+                        <input asp-for="Especie" class="form-control" />
+                        <span asp-validation-for="Especie" class="text-danger"></span>
+                    </div>*@
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Genero" class="control-label">Gênero</label>
+                    <select asp-for="Genero" class="form-control" asp-items="Html.GetEnumSelectList<genero>()"></select>
+                    <span asp-validation-for="Genero" class="text-danger"></span>
+                </div>
+                @*<div class="form-group col-md-6">
+                        <label asp-for="Genero" class="control-label"></label>
+                        <input asp-for="Genero" class="form-control" />
+                        <span asp-validation-for="Genero" class="text-danger"></span>
+                    </div>*@
+                <div class="form-group col-md-6">
+                    <label asp-for="Deficiencia" class="control-label"></label>
+                    <input asp-for="Deficiencia" class="form-control" />
+                    <span asp-validation-for="Deficiencia" class="text-danger"></span>
+                </div>
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Observacao" class="control-label"></label>
+                    <input asp-for="Observacao" class="form-control" />
+                    <span asp-validation-for="Observacao" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Idade" class="control-label"></label>
+                    <input asp-for="Idade" class="form-control" />
+                    <span asp-validation-for="Idade" class="text-danger"></span>
+                </div>
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="DataResgate" class="control-label"></label>
+                    <input asp-for="DataResgate" class="form-control" />
+                    <span asp-validation-for="DataResgate" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Porte" class="control-label"></label>
+                    <select asp-for="Porte" class="form-control" asp-items="Html.GetEnumSelectList<porte>()"></select>
+                    <span asp-validation-for="Porte" class="text-danger"></span>
+                </div>
+                @*<div class="form-group col-md-6">
+                        <label asp-for="Porte" class="control-label"></label>
+                        <input asp-for="Porte" class="form-control" />
+                        <span asp-validation-for="Porte" class="text-danger"></span>
+                    </div>*@
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="col-2">
+                    <div class="form-group form-check col-md-1">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Vacinado" /> @Html.DisplayNameFor(model => model.Vacinado)
+                        </label>
+                    </div>
+                    <div class="form-group form-check col-md-1">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Castrado" /> @Html.DisplayNameFor(model => model.Castrado)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <label asp-for="PathFoto" class="control-label">Foto do Animal</label>
+                    <input asp-for="PathFoto" type="file" accept="image/*" id="foto" name="foto" />
+                    <span asp-validation-for="PathFoto" class="text-danger"></span>
+                </div>
+            </div>
+            <p></p>
+            <h4>Suas Informações <i class="fa fa-user"></i></h4>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="NomeDoador" class="control-label">Seu Nome</label>
+                    <input asp-for="NomeDoador" class="form-control" />
+                    <span asp-validation-for="NomeDoador" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Email" class="control-label">E-mail</label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Telefone" class="control-label"></label>
+                    <input asp-for="Telefone" class="form-control" />
+                    <span asp-validation-for="Telefone" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="WhatsApp" class="control-label"></label>
+                    <input asp-for="WhatsApp" class="form-control" />
+                    <span asp-validation-for="WhatsApp" class="text-danger"></span>
+                </div>
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Estado" class="control-label">Estado</label>
+                    <select asp-for="Estado" class="form-control" asp-items="Html.GetEnumSelectList<Estado>()"></select>
+                    <span asp-validation-for="Estado" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Cidade" class="control-label"></label>
+                    <input asp-for="Cidade" class="form-control" />
+                    <span asp-validation-for="Cidade" class="text-danger"></span>
+                </div>
+            </div>
+            <p></p>
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <h4 class="titulo-modal-Edit">Confirme o Código <i class="fa fa-edit"></i></h4>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="form-group col-md-6">
+                            @{@if (Model.Genero != "2")
+                                {
+                                    <label class="control-label">Insira o código do @Model.NomeAnimal para provar que ele é seu!</label>
+                                }
+                                else if (Model.Genero == "2")
+                                {
+                                    <label class="control-label">Insira o código da @Model.NomeAnimal para provar que ela é sua!</label>
+                                }
+
+                            }
+                            <input asp-for="ConfirmaCod" class="form-control" />
+                            <span asp-validation-for="ConfirmaCod" class="text-danger"></span>
+                            <p></p>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5"></div>
+                        <div class="form-group col-2">
+                            <input @*id="modal"*@ type="submit" value="Confirmar" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <p><br /></p>
+        <div class="row">
+            <div class="col-9">
+                <div class="row">
+                    <div class="form-group col-2">
+                        <button id="modal" class="btn btn-primary">Salvar</button>
+                    </div>
+                    <div class="col-1">
+                        <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-outline-dark">Voltar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        /*   var modal = document.getElementById("modal");*/
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("modal");
+        /*    var btn = document.getElementById("btnConfirmar");*/
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+}
